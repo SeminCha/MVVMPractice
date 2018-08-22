@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MVVMPractice</string>
+
+    <string name="master_mode">Master Mode</string>
+    <string name="test_switch_1">Test switch 1</string>
+    <string name="test_switch_value_1">Test switch value 1</string>
+    <string name="test_switch_2">Test switch 2</string>
+    <string name="test_switch_value_2">Test switch value 2</string>
+    <string name="test_button">Test Button</string>
+</resources>

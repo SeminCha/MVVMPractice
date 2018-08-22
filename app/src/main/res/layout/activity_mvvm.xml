@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import
+            alias="AndroidView"
+            type="android.view.View" />
+
+        <variable
+            name="View"
+            type="com.example.krinlech.mvvmpractice.MvvmActivity" />
+
+        <variable
+            name="ViewModel"
+            type="com.example.krinlech.mvvmpractice.MvvmViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="@string/master_mode"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/master_mode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:checked="@{ViewModel.masterMode}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="@string/test_switch_1"
+                android:textSize="@dimen/item_text_size" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/sub_mode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:checked="@{ViewModel.subMode}"
+                android:enabled="@{ViewModel.masterMode}" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            android:orientation="horizontal"
+            android:visibility="@{(ViewModel.masterMode &amp;&amp; ViewModel.subMode) ? AndroidView.VISIBLE : AndroidView.GONE}"
+            >
+            <EditText
+                android:id="@+id/value_text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@{ViewModel.valueText}"
+                />
+
+            <TextView
+                android:id="@+id/result_data_from_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginStart="20dp"
+                android:text="@{ViewModel.resultText}"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/preset1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/item_height"
+                android:text="Preset 1"
+                android:onClick="@{(v) -> ViewModel.onButton(v)}"
+                />
+            <Button
+                android:id="@+id/preset2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/item_height"
+                android:text="Preset 2"
+                android:onClick="@{ViewModel::onButton}"
+                />
+        </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:id="@+id/result_data_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{ViewModel.testData.id}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/result_data_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{ViewModel.testData.name}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+</layout>
